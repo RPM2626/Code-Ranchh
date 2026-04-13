@@ -1,1 +1,13 @@
+{% extends "base.html" %}
 
+{% block content %}
+<div class="card">
+    <h2>📜 History</h2>
+
+    {% for item in history %}
+        <p>{{ item.guess }} → 🐂 {{ item.bulls }} | 🐄 {{ item.cows }}</p>
+    {% endfor %}
+
+    <a href="/game" class="btn">Back</a>
+</div>
+{% endblock %}
