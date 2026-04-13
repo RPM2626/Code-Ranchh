@@ -1,1 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="animal-banner">🐮 ✨ 🐂 ✨ 🐮</div>
+    <div class="logo">🐄</div>
+    <h2>Welcome to Bulls & Cows</h2>
+    <div class="cute-row">🌸 moo moo mystery game 🌸</div>
+
+    <a class="btn" href="{{ url_for('game_views.login') }}">Instructions</a>
+    <a class="btn" href="{{ url_for('game_views.game') }}">Play Game</a>
+    <a class="btn btn-secondary" href="{{ url_for('game_views.history_page') }}">View History</a>
+</div>
+{% endblock %}
 
