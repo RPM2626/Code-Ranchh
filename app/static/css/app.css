@@ -49,3 +49,25 @@ button, .btn {
 .error {
     color: red;
 }
+
+.card {
+background: #F9F7F3;
+padding: 20px;
+border-radius: 15px;
+box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+transition: transform 0.2s;
+}
+
+.card {
+transform: scale(1.03);
+}
+
+.title {
+font-size: 28px;
+animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+0% { transform: translateY(0px); }
+50% { transform: translateY(-8px); }
+100% { transform: translateY(0px); }
