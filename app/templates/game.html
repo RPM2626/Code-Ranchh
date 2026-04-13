@@ -1,1 +1,20 @@
+{% extends "base.html" %}
 
+{% block content %}
+<div class="card">
+    <h2>🐄 Guess the Number 🐂</h2>
+
+    <form method="POST" action="/game">
+        <input name="guess" maxlength="4" placeholder="Enter 4 digits">
+        <button>Guess</button>
+    </form>
+
+    <h3>History</h3>
+
+    {% for item in history %}
+        <p>{{ item.guess }} → 🐂 {{ item.bulls }} | 🐄 {{ item.cows }}</p>
+    {% endfor %}
+
+    <a href="/history" class="btn">View Full History</a>
+</div>
+{% endblock %}
