@@ -10,3 +10,4 @@ class LeaderboardEntry:
         self.date = date
         self.attempts = attempts
         self.status = status
+
