@@ -1,11 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Bulls & Cows 🐄</title>
-    <link rel="stylesheet" href="/static/css/app.css">
-</head>
-<body>
-    <div class="floating">🐄 🐂 🌸 ✨ 🐄 🐂</div>
-    {% block content %}{% endblock %}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="center">
+    <div class="card">
+        <div class="emoji">🐮</div>
+
+        <h2>Sign Up</h2>
+        <p class="hint">Cute farm club registration 🌸</p>
+
+        <form>
+            <input placeholder="Enter Username">
+            <input type="password" placeholder="Enter Password">
+            <button class="btn">Sign Up</button>
+        </form>
+
+        <a href="/login" class="btn pink">Back to Login</a>
+    </div>
+</div>
+{% endblock %}
