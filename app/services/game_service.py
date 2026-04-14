@@ -1,6 +1,8 @@
 import random
 from datetime import date, datetime, timedelta
 
+from app.models.game_model import GameResult, LeaderboardEntry
+
 history = []
 leaderboard = []
 current_day = None
@@ -38,12 +40,7 @@ def evaluate_guess(guess: str):
         elif guess[i] in secret_number:
             cows += 1
 
-    result = {
-        "guess": guess,
-        "bulls": bulls,
-        "cows": cows
-    }
-
+    result = GameResult(guess, bulls, cows)
     history.append(result)
     return result
 
@@ -66,7 +63,10 @@ def get_today():
 
 def get_time_until_next_challenge():
     now = datetime.now()
-    tomorrow = datetime.combine(date.today() + timedelta(days=1), datetime.min.time())
+    tomorrow = datetime.combine(
+        date.today() + timedelta(days=1),
+        datetime.min.time()
+    )
     remaining = tomorrow - now
 
     total_seconds = int(remaining.total_seconds())
@@ -80,15 +80,17 @@ def get_time_until_next_challenge():
 def record_win():
     ensure_daily_game()
 
-    entry = {
-        "date": get_today(),
-        "attempts": len(history),
-        "status": "Won"
-    }
+    entry = LeaderboardEntry(
+        get_today(),
+        len(history),
+        "Won"
+    )
 
-    if not any(item["date"] == entry["date"] for item in leaderboard):
+    if not any(item.date == entry.date for item in leaderboard):
         leaderboard.append(entry)
 
 
 def get_leaderboard():
     return leaderboard
+
+   
