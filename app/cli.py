@@ -1,5 +1,6 @@
 def main():
-    print("🐄 Bulls and Cows CLI running...")
+    print("🐄 Welcome to Bulls & Cows CLI")
+    print("This version runs in the browser at /game")
 
 
 if __name__ == "__main__":
