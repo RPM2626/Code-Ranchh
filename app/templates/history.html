@@ -1,18 +1,69 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="center">
+<div class="page-wrap">
     <div class="card">
+        <div class="animal-banner">🏆 🐄 ✨ 🐂</div>
+        <h2 class="title">Leaderboard</h2>
+        <p class="note">Daily Challenge: {{ today }}</p>
+        <div class="timer-box">Next challenge in: ⏳ {{ timer }}</div>
 
-        <h2>📜 History</h2>
-        <p>{{ today }}</p>
+        {% if leaderboard %}
+        <div class="table-box">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Attempts</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in leaderboard %}
+                    <tr>
+                        <td>{{ item.date }}</td>
+                        <td>{{ item.attempts }}</td>
+                        <td>{{ item.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="note">No completed games yet 🐄</p>
+        {% endif %}
 
-        {% for item in history %}
-        <p>🔢 {{ item.guess }} → 🐂 {{ item.bulls }} | 🐄 {{ item.cows }}</p>
-        {% endfor %}
+        <h3 class="title" style="font-size: 22px;">Today's Guess History</h3>
 
-        <a href="/game" class="btn small">Back</a>
+        {% if history %}
+        <div class="table-box">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Guess</th>
+                        <th>Bulls</th>
+                        <th>Cows</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in history %}
+                    <tr>
+                        <td>{{ item.guess }}</td>
+                        <td>{{ item.bulls }}</td>
+                        <td>{{ item.cows }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="note">No guesses yet for today.</p>
+        {% endif %}
 
+        <div class="nav-row">
+            <a href="/game" class="small-btn">Back to Game</a>
+            <a href="/" class="small-btn">Home</a>
+        </div>
     </div>
 </div>
 {% endblock %}
