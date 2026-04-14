@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-    <div class="animal-banner">🐮 ✨ 🐂 ✨ 🐮</div>
-    <div class="logo">🐄</div>
-    <h2>Welcome to Bulls & Cows</h2>
-    <div class="cute-row">🌸 moo moo mystery game 🌸</div>
+<div class="page-wrap">
+    <div class="card home-card">
+        <div class="animal-banner">🌸 🐄 🌸 🐂 🌸</div>
+        <div class="logo-circle">🐮</div>
+        <h1 class="title">Bulls & Cows</h1>
+        <p class="subtitle">Hey cow guys and cow girls 💖</p>
 
-    <a class="btn" href="{{ url_for('game_views.login') }}">Instructions</a>
-    <a class="btn" href="{{ url_for('game_views.game') }}">Play Game</a>
-    <a class="btn btn-secondary" href="{{ url_for('game_views.history_page') }}">View History</a>
+        <a href="/login" class="btn">Login</a>
+        <a href="/register" class="btn btn-secondary">Sign Up</a>
+        <a href="/game" class="btn btn-soft">Play Game</a>
+        <a href="/history" class="btn btn-soft">View History</a>
+    </div>
 </div>
 {% endblock %}
-
