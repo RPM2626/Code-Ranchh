@@ -1,13 +1,12 @@
-from sqlmodel import Field, SQLModel
-from typing import Optional
-from pydantic import EmailStr
+class GameResult:
+    def __init__(self, guess, bulls, cows):
+        self.guess = guess
+        self.bulls = bulls
+        self.cows = cows
 
 
-class UserBase(SQLModel,):
-    username: str = Field(index=True, unique=True)
-    email: EmailStr = Field(index=True, unique=True)
-    password: str
-    role:str = ""
-
-class User(UserBase, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
+class LeaderboardEntry:
+    def __init__(self, date, attempts, status):
+        self.date = date
+        self.attempts = attempts
+        self.status = status
