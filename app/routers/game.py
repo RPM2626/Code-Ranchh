@@ -6,8 +6,12 @@ from app.services.game_service import evaluate_guess
 router = APIRouter()
 templates = Jinja2Templates(directory="app/templates")
 
-# Temporary in-memory storage
-secret_number = "1234"  # you can replace with daily logic later
+secret_number = "1234"
+
+
+@router.get("/")
+def home(request: Request):
+    return RedirectResponse(url="/login", status_code=303)
 
 
 @router.get("/game")
@@ -24,7 +28,6 @@ async def submit_guess(request: Request):
     form = await request.form()
     guess = form.get("guess")
 
-    # validation
     if not guess or len(guess) != 4 or not guess.isdigit():
         return templates.TemplateResponse(
             request,
@@ -34,7 +37,6 @@ async def submit_guess(request: Request):
 
     result = evaluate_guess(secret_number, guess)
 
-    # FIXED: use object property instead of dict
     if result.bulls == 4:
         return RedirectResponse("/win", status_code=303)
 
