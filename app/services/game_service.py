@@ -2,6 +2,7 @@ import random
 from datetime import date, datetime, timedelta
 
 history = []
+leaderboard = []
 current_day = None
 secret_number = ""
 
@@ -65,10 +66,7 @@ def get_today():
 
 def get_time_until_next_challenge():
     now = datetime.now()
-    tomorrow = datetime.combine(
-        date.today() + timedelta(days=1),
-        datetime.min.time()
-    )
+    tomorrow = datetime.combine(date.today() + timedelta(days=1), datetime.min.time())
     remaining = tomorrow - now
 
     total_seconds = int(remaining.total_seconds())
@@ -77,4 +75,20 @@ def get_time_until_next_challenge():
     seconds = total_seconds % 60
 
     return f"{hours:02}:{minutes:02}:{seconds:02}"
-   
+
+
+def record_win():
+    ensure_daily_game()
+
+    entry = {
+        "date": get_today(),
+        "attempts": len(history),
+        "status": "Won"
+    }
+
+    if not any(item["date"] == entry["date"] for item in leaderboard):
+        leaderboard.append(entry)
+
+
+def get_leaderboard():
+    return leaderboard
