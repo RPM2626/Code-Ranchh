@@ -9,9 +9,9 @@
 
         <div class="timer">⏳ {{ timer }}</div>
 
-        <form method="POST">
-            <input name="guess" placeholder="Enter 4 digits">
-            <button class="btn">Guess</button>
+        <form method="POST" action="/game">
+            <input name="guess" placeholder="Enter 4 digits" maxlength="4" required>
+            <button type="submit" class="btn">Guess</button>
         </form>
 
         <h3>History</h3>
