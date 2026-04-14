@@ -77,4 +77,4 @@ def get_time_until_next_challenge():
     seconds = total_seconds % 60
 
     return f"{hours:02}:{minutes:02}:{seconds:02}"
-
+   
