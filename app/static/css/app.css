@@ -80,6 +80,16 @@ input {
     text-align: center;
     font-size: 24px;
     animation: float 8s linear infinite;
+    
+    .timer-box {
+    background: #fff6d6;
+    border: 2px dashed #f7a072;
+    padding: 10px 14px;
+    border-radius: 12px;
+    margin: 10px auto 16px;
+    display: inline-block;
+    font-weight: bold;
+    color: #7a4b2a;
 }
 
 @keyframes float {
