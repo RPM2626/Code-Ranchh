@@ -8,6 +8,8 @@ from app.services.game_service import (
     reset_game,
     get_today,
     get_time_until_next_challenge,
+    record_win,
+    get_leaderboard,
 )
 
 router = APIRouter()
@@ -81,7 +83,8 @@ def game_submit(
         result = evaluate_guess(guess)
 
         if result["bulls"] == 4:
-            return RedirectResponse(url="/win", status_code=303)
+            record_win()
+            return RedirectResponse(url="/history", status_code=303)
 
     return RedirectResponse(url="/game", status_code=303)
 
@@ -105,6 +108,7 @@ def history_page(request: Request):
         {
             "request": request,
             "history": get_history(),
+            "leaderboard": get_leaderboard(),
             "today": get_today(),
             "timer": get_time_until_next_challenge(),
         }
