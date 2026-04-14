@@ -16,14 +16,20 @@ templates = Jinja2Templates(directory="app/templates")
 
 @router.get("/", response_class=HTMLResponse)
 def index(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(
+        "index.html",
+        {"request": request}
+    )
 
 
 @router.get("/login", response_class=HTMLResponse)
 def login_page(request: Request):
     return templates.TemplateResponse(
         "login.html",
-        {"request": request, "error": None}
+        {
+            "request": request,
+            "error": None
+        }
     )
 
 
@@ -47,7 +53,10 @@ def login_submit(
 
 @router.get("/register", response_class=HTMLResponse)
 def register_page(request: Request):
-    return templates.TemplateResponse("register.html", {"request": request})
+    return templates.TemplateResponse(
+        "register.html",
+        {"request": request}
+    )
 
 
 @router.get("/game", response_class=HTMLResponse)
@@ -59,12 +68,15 @@ def game_page(request: Request):
             "history": get_history(),
             "today": get_today(),
             "timer": get_time_until_next_challenge(),
-        },
+        }
     )
 
 
 @router.post("/game", response_class=HTMLResponse)
-def game_submit(request: Request, guess: str = Form(...)):
+def game_submit(
+    request: Request,
+    guess: str = Form(...)
+):
     if len(guess) == 4 and guess.isdigit():
         result = evaluate_guess(guess)
 
@@ -82,7 +94,7 @@ def win_page(request: Request):
             "request": request,
             "today": get_today(),
             "timer": get_time_until_next_challenge(),
-        },
+        }
     )
 
 
@@ -95,7 +107,7 @@ def history_page(request: Request):
             "history": get_history(),
             "today": get_today(),
             "timer": get_time_until_next_challenge(),
-        },
+        }
     )
 
 
